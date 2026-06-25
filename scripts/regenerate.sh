@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 #
-# Regenerate Formula/attackmap.rb as a fully resource-pinned formula.
+# Regenerate Formula/attackmap.rb as a fully resource-pinned formula
+# IN PLACE. Updates only the regions between marker comments:
+#   "# BEGIN sdist" ... "# END sdist"
+#   "# BEGIN resources" ... "# END resources"
+# Everything else (license, head, install, test) is preserved.
 #
 # Run after AttackMap core and every official analyzer plugin are published
 # to PyPI. Uses homebrew-pypi-poet to emit `resource` blocks with sha256s
 # for every transitive dependency (core + 13 analyzers + [llm] extra).
-#
-# poet is installed into the same throwaway venv as attackmap[all] so its
-# pkg_resources introspection can actually see the installed packages.
-# setuptools is pinned <81 because poet still imports pkg_resources, which
-# setuptools 81+ removed.
 #
 # Prereqs:
 #   brew install python@3.12
@@ -44,6 +43,21 @@ ANALYZERS=(
 )
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+FORMULA="${REPO_ROOT}/Formula/attackmap.rb"
+
+if [ ! -f "${FORMULA}" ]; then
+  echo "ERROR: ${FORMULA} not found" >&2
+  exit 1
+fi
+
+# Sanity: bail early if the formula doesn't have the managed markers.
+for marker in "# BEGIN sdist" "# END sdist" "# BEGIN resources" "# END resources"; do
+  if ! grep -q "${marker}" "${FORMULA}"; then
+    echo "ERROR: marker '${marker}' missing from ${FORMULA}" >&2
+    echo "Add the marker comments around the regions you want this script to manage." >&2
+    exit 1
+  fi
+done
 
 WORKDIR="$(mktemp -d)"
 trap 'rm -rf "${WORKDIR}"' EXIT
@@ -53,19 +67,17 @@ python3 -m venv venv
 # shellcheck disable=SC1091
 source venv/bin/activate
 pip install --upgrade pip "setuptools<81"
-# Install poet INSIDE this venv so its pkg_resources introspection sees
-# the same site-packages that attackmap[all] is installed into.
+# poet must share a venv with attackmap[all]; its pkg_resources
+# introspection cannot cross venv boundaries (the silent-zero-resources
+# trap that bit us in 0.1.0).
 pip install homebrew-pypi-poet "attackmap[all]==${VERSION}"
 
-# Compute the sha256 of the upstream sdist for the top-level url.
+# Top-level sdist url + sha256.
 pip download --no-deps --no-binary :all: "attackmap==${VERSION}" -d . >/dev/null
 SDIST_FILE="$(ls attackmap-*.tar.gz | head -1)"
 SDIST_SHA="$(shasum -a 256 "${SDIST_FILE}" | awk '{print $1}')"
-# The PyPI download URL (used in the formula's top-level `url` field) is
-# read from the JSON API since pip stopped surfacing it cleanly in newer
-# versions.
 SDIST_URL="$(python3 -c "
-import json, urllib.request, sys
+import json, urllib.request
 data = json.loads(urllib.request.urlopen(
     f'https://pypi.org/pypi/attackmap/${VERSION}/json'
 ).read())
@@ -75,24 +87,100 @@ for u in data['urls']:
 ")"
 
 # poet -f attackmap walks attackmap's REQUIRED deps. Analyzers + anthropic
-# live in extras, so add each one with -a so they (and their transitive
-# deps) end up in the resource list.
+# live in extras, so add each one with -a.
 ALSO_FLAGS=(-a anthropic)
 for pkg in "${ANALYZERS[@]}"; do
   ALSO_FLAGS+=(-a "${pkg}")
 done
 
-OUT="${REPO_ROOT}/Formula/attackmap.poet.rb"
-poet -f attackmap "${ALSO_FLAGS[@]}" > "${OUT}"
+POET_OUT="${WORKDIR}/poet.rb"
+poet -f attackmap "${ALSO_FLAGS[@]}" > "${POET_OUT}"
 
-RESOURCE_COUNT=$(grep -c '^  resource' "${OUT}" || true)
+RESOURCE_COUNT=$(grep -c '^  resource' "${POET_OUT}" || true)
+EXPECTED=$((${#ANALYZERS[@]} + 24))  # 13 analyzers + ~24 transitive deps
+if [ "${RESOURCE_COUNT}" -lt "${EXPECTED}" ]; then
+  echo "ERROR: poet emitted ${RESOURCE_COUNT} resources, expected ≥ ${EXPECTED}" >&2
+  echo "Probable cause: poet pkg_resources introspection regression." >&2
+  exit 1
+fi
+
+# Extract just the resource blocks from poet's output.
+RESOURCES="${WORKDIR}/resources.rb"
+awk '
+  /^  resource / { in_block = 1 }
+  in_block        { print }
+  in_block && /^  end$/ { in_block = 0 }
+' "${POET_OUT}" > "${RESOURCES}"
+
+# In-place rewrite using a Python helper — multi-line replace in shell is
+# misery. Atomic write via temp + mv.
+python3 - "${FORMULA}" "${SDIST_URL}" "${SDIST_SHA}" "${RESOURCES}" <<'PY'
+import sys, pathlib, re
+
+formula_path, url, sha, resources_path = sys.argv[1:5]
+text = pathlib.Path(formula_path).read_text()
+resources_body = pathlib.Path(resources_path).read_text().rstrip() + "\n"
+
+# Replace the sdist region.
+sdist_block = (
+    "# BEGIN sdist: managed by scripts/regenerate.sh — do not edit by hand\n"
+    f'  url "{url}"\n'
+    f'  sha256 "{sha}"\n'
+    "  # END sdist"
+)
+text, sdist_n = re.subn(
+    r"# BEGIN sdist:[^\n]*\n.*?# END sdist",
+    lambda _m: sdist_block,
+    text,
+    count=1,
+    flags=re.DOTALL,
+)
+if sdist_n != 1:
+    sys.exit(f"ERROR: failed to replace sdist block (matches={sdist_n})")
+
+# Replace the resources region. Preserve the BEGIN/END marker lines so the
+# script can find them again next release.
+resources_block = (
+    "# BEGIN resources: managed by scripts/regenerate.sh — do not edit by hand\n"
+    f"{resources_body}"
+    "  # END resources"
+)
+text, res_n = re.subn(
+    r"# BEGIN resources:[^\n]*\n.*?# END resources",
+    lambda _m: resources_block,
+    text,
+    count=1,
+    flags=re.DOTALL,
+)
+if res_n != 1:
+    sys.exit(f"ERROR: failed to replace resources block (matches={res_n})")
+
+tmp = pathlib.Path(formula_path + ".tmp")
+tmp.write_text(text)
+tmp.replace(formula_path)
+print(f"Rewrote {formula_path}")
+PY
+
+# Ruby syntax check.
+if command -v ruby >/dev/null 2>&1; then
+  if ! ruby -c "${FORMULA}" >/dev/null; then
+    echo "ERROR: ruby syntax check failed on ${FORMULA}" >&2
+    exit 1
+  fi
+fi
+
+# Optional: brew style if available (slow first time — installs gems).
+if command -v brew >/dev/null 2>&1; then
+  echo "Running brew style…"
+  brew style "${FORMULA}" || {
+    echo "WARNING: brew style reported offenses (see above)" >&2
+  }
+fi
 
 echo ""
-echo "Wrote ${OUT}"
-echo "Resources emitted: ${RESOURCE_COUNT}  (expect ≥ $((${#ANALYZERS[@]} + 24)))"
-echo "Top-level sdist:   ${SDIST_URL}"
-echo "sha256:            ${SDIST_SHA}"
+echo "  Formula:           ${FORMULA}"
+echo "  Resources written: ${RESOURCE_COUNT}"
+echo "  Top-level sdist:   ${SDIST_URL}"
+echo "  sha256:            ${SDIST_SHA}"
 echo ""
-echo "Next: merge resource blocks from Formula/attackmap.poet.rb into"
-echo "Formula/attackmap.rb, update the url + sha256 to the values above,"
-echo "and verify with: brew style ./Formula/attackmap.rb"
+echo "Review with: git diff Formula/attackmap.rb"

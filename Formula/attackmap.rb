@@ -12,13 +12,16 @@ class Attackmap < Formula
 
   desc "AI-assisted defensive security analyzer for codebases"
   homepage "https://github.com/mlaify/AttackMap"
+  # BEGIN sdist: managed by scripts/regenerate.sh — do not edit by hand
   url "https://files.pythonhosted.org/packages/d2/6c/a19a6b87093a5133bbe24ac8abb52b37a2a35dabef9f4b6933b6b2a1f144/attackmap-0.1.0.tar.gz"
   sha256 "d6d65adfd42e28c96562c9213872f0460cea3f18f5a65dc7e958f794fcb6c3cb"
+  # END sdist
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
 
   depends_on "python@3.12"
 
+  # BEGIN resources: managed by scripts/regenerate.sh — do not edit by hand
   resource "annotated-doc" do
     url "https://files.pythonhosted.org/packages/57/ba/046ceea27344560984e26a590f90bc7f4a75b06701f653222458922b558c/annotated_doc-0.0.4.tar.gz"
     sha256 "fbcda96e87e9c92ad167c2e53839e57503ecfda18804ea28102353485033faa4"
@@ -167,6 +170,7 @@ class Attackmap < Formula
     url "https://files.pythonhosted.org/packages/55/e3/70399cb7dd41c10ac53367ae42139cf4b1ca5f36bb3dc6c9d33acdb43655/typing_inspection-0.4.2.tar.gz"
     sha256 "ba561c48a67c5958007083d386c3295464928b01faa735ab8547c5692e87f464"
   end
+  # END resources
 
   def install
     virtualenv_install_with_resources
