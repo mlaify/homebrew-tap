@@ -19,11 +19,11 @@ class Attackmap < Formula
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
 
+  depends_on "rust" => :build
   depends_on "python@3.12"
   # Rust toolchain for pydantic-core's sdist. Homebrew's virtualenv
   # install runs pip with `--no-binary :all:`, so any wheel-only Python
   # package with a Rust extension has to build from source.
-  depends_on "rust" => :build
 
   # BEGIN resources: managed by scripts/regenerate.sh — do not edit by hand
   resource "annotated-doc" do
