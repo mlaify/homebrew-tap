@@ -128,6 +128,18 @@ awk '
   in_block && /^  end$/ { in_block = 0 }
 ' "${POET_OUT}" > "${RESOURCES}"
 
+# `homebrew-pypi-poet` emits `resource "<python_module_name>"`, but
+# homebrew's `brew audit` requires the resource name to match the PyPI
+# DIST name (hyphens, not underscores) for well-known packages.
+# `pydantic_core` on PyPI ships as `pydantic-core`; audit rejects the
+# underscore form. Normalize the known offenders in place — the URL
+# still carries the actual sdist filename so nothing else needs to
+# change.
+sed -i.bak -E '
+  s/^  resource "pydantic_core"/  resource "pydantic-core"/
+' "${RESOURCES}"
+rm -f "${RESOURCES}.bak"
+
 # In-place rewrite using a Python helper — multi-line replace in shell is
 # misery. Atomic write via temp + mv.
 python3 - "${FORMULA}" "${SDIST_URL}" "${SDIST_SHA}" "${RESOURCES}" <<'PY'
