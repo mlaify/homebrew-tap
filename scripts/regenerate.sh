@@ -32,6 +32,7 @@ ANALYZERS=(
   attackmap-analyzer-cpp
   attackmap-analyzer-dotnet
   attackmap-analyzer-go
+  attackmap-analyzer-iac
   attackmap-analyzer-java-spring
   attackmap-analyzer-node-service
   attackmap-analyzer-omeka-s
@@ -97,7 +98,7 @@ POET_OUT="${WORKDIR}/poet.rb"
 poet -f attackmap "${ALSO_FLAGS[@]}" > "${POET_OUT}"
 
 RESOURCE_COUNT=$(grep -c '^  resource' "${POET_OUT}" || true)
-EXPECTED=$((${#ANALYZERS[@]} + 24))  # 13 analyzers + ~24 transitive deps
+EXPECTED=$((${#ANALYZERS[@]} + 24))  # 14 analyzers + ~24 transitive deps
 if [ "${RESOURCE_COUNT}" -lt "${EXPECTED}" ]; then
   echo "ERROR: poet emitted ${RESOURCE_COUNT} resources, expected ≥ ${EXPECTED}" >&2
   echo "Probable cause: poet pkg_resources introspection regression." >&2

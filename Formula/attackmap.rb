@@ -13,8 +13,8 @@ class Attackmap < Formula
   desc "AI-assisted defensive security analyzer for codebases"
   homepage "https://github.com/mlaify/AttackMap"
   # BEGIN sdist: managed by scripts/regenerate.sh — do not edit by hand
-  url "https://files.pythonhosted.org/packages/d2/6c/a19a6b87093a5133bbe24ac8abb52b37a2a35dabef9f4b6933b6b2a1f144/attackmap-0.1.0.tar.gz"
-  sha256 "d6d65adfd42e28c96562c9213872f0460cea3f18f5a65dc7e958f794fcb6c3cb"
+  url "https://files.pythonhosted.org/packages/b9/32/28c6bb975b930482c063afce88cb15c247122abfd33357aabfacd8c1c452/attackmap-0.2.0.tar.gz"
+  sha256 "ce975cfd52caa523c2791a7e4929b89fe6582e80ad99027ac3f4c998ae4fb252"
   # END sdist
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
@@ -31,8 +31,8 @@ class Attackmap < Formula
     sha256 "aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"
   end
   resource "anthropic" do
-    url "https://files.pythonhosted.org/packages/7b/dd/808c144d4a883fcfd12fe0d7689b1d86bbbea6666c1cc957ad19f1017c22/anthropic-0.112.0.tar.gz"
-    sha256 "e180cd91aa5b9b32e4007fe69892ab128d8a86b9f90825103b1903fbc977d0af"
+    url "https://files.pythonhosted.org/packages/66/a2/d31f14e28d49bae983a3634e38dfb4b31c50110b5e403596c5c6a20b23f8/anthropic-0.116.0.tar.gz"
+    sha256 "5fc248fbb9fe03ef686f8a774f81586bca31a043260aab88b387ea3660f4a396"
   end
   resource "anyio" do
     url "https://files.pythonhosted.org/packages/3b/72/5562aabb8dd7181e8e860622a38bea08d17842b99ecd4c91f84ac95251b0/anyio-4.14.1.tar.gz"
@@ -58,13 +58,17 @@ class Attackmap < Formula
     url "https://files.pythonhosted.org/packages/9d/73/c526aa9c641f5c1cdb55910dede39470018eeda93e0a1823aa901ff4ae2f/attackmap_analyzer_go-0.1.0.tar.gz"
     sha256 "2a416f7611fce9d154d977dff5278fa3399802b2c771e7f54a8b35cef626f1d6"
   end
+  resource "attackmap-analyzer-iac" do
+    url "https://files.pythonhosted.org/packages/33/85/798c0e984a0e3d03540eb22fccd0e17bb4e6fc61e3e116273fd1c7207986/attackmap_analyzer_iac-0.1.0.tar.gz"
+    sha256 "093c3fb1c17ccbfd612e61205b32d93f6c5586e165fef86e98cd69a8fd1dd25a"
+  end
   resource "attackmap-analyzer-java-spring" do
     url "https://files.pythonhosted.org/packages/a7/fe/5042dcbe8a942a145802f4e33f0f02355968dfdee5a47c6bd9193df002e1/attackmap_analyzer_java_spring-0.1.0.tar.gz"
     sha256 "19c0ce351238f42aeb18c45586f010d3c3b6e6461ff306aafa1bc6f29dbada28"
   end
   resource "attackmap-analyzer-node-service" do
-    url "https://files.pythonhosted.org/packages/e3/24/3930ba04eea5150a6650c456d59f4cc7506233f512e88888cbbf63d3d06e/attackmap_analyzer_node_service-0.1.0.tar.gz"
-    sha256 "c76b334423ed855cdbfae0efd5aa118038eb0b1540d5cb0ed29b54caf0974c20"
+    url "https://files.pythonhosted.org/packages/20/27/c708307fb877e4361eed67122412e43d7e50f37baeab88f332ebcd035ba8/attackmap_analyzer_node_service-0.2.0.tar.gz"
+    sha256 "70930e19c5c969ddf05c81698ee7b83c99118d5ee4d870f9eb4353c570824b09"
   end
   resource "attackmap-analyzer-omeka-s" do
     url "https://files.pythonhosted.org/packages/c1/22/8c4e42708741cc7a963316e81f5efde670c2952674fdc1d57c44f38d1a40/attackmap_analyzer_omeka_s-0.1.0.tar.gz"
@@ -119,8 +123,8 @@ class Attackmap < Formula
     sha256 "ffb385a7e039654cef1ab9ef32c6fafe283c0c0467bba1d9029738ce4a14a848"
   end
   resource "jiter" do
-    url "https://files.pythonhosted.org/packages/66/b5/55f06bb281d92fb3cc86d14e1def2bd908bb77693183e7cb1f5a3c388b0c/jiter-0.15.0.tar.gz"
-    sha256 "4251acc80e2b7c9b7b8823456ea0fceeb0734dac2df7636d3c711b38476b5a76"
+    url "https://files.pythonhosted.org/packages/1d/1f/10936e16d8860c70698a1aa939a46aa0224813b782bce4e000e637da0b2d/jiter-0.16.0.tar.gz"
+    sha256 "7b24c3492c5f4f84a37946ad9cf504910cf6a782d6a4e0689b6673c5894b4a1c"
   end
   resource "markdown-it-py" do
     url "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz"
@@ -159,12 +163,12 @@ class Attackmap < Formula
     sha256 "f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc"
   end
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/5e/ed/ef06584ccdd5c410df0837951ecd7e15d9a6144ea1bd4c73cecab1a89891/typer-0.26.7.tar.gz"
-    sha256 "e314a34c617e419c091b2830dda3ea1f257134ff593061a8f5b9717ab8dddb3a"
+    url "https://files.pythonhosted.org/packages/7c/f7/68adc395201b20b872d68e975386832e8005ffeacedd43a1d837a32815be/typer-0.26.8.tar.gz"
+    sha256 "c244a6bd558886fe3f8780efb6bdd28bb9aff005a94eedebaa5cb32926fe2f7e"
   end
   resource "typing-extensions" do
-    url "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz"
-    sha256 "0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"
+    url "https://files.pythonhosted.org/packages/f6/cc/6253133b5bb138fc3306cebfbda2c520f545d36b5be2c7255cc528bb45d6/typing_extensions-4.16.0.tar.gz"
+    sha256 "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
   end
   resource "typing-inspection" do
     url "https://files.pythonhosted.org/packages/55/e3/70399cb7dd41c10ac53367ae42139cf4b1ca5f36bb3dc6c9d33acdb43655/typing_inspection-0.4.2.tar.gz"
