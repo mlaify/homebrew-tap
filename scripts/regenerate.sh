@@ -71,7 +71,16 @@ pip install --upgrade pip "setuptools<81"
 # poet must share a venv with attackmap[all]; its pkg_resources
 # introspection cannot cross venv boundaries (the silent-zero-resources
 # trap that bit us in 0.1.0).
-pip install homebrew-pypi-poet "attackmap[all]==${VERSION}"
+# Install attackmap core + each analyzer explicitly. We do NOT install
+# `attackmap[llm]` (which would pull anthropic → jiter, a Rust extension
+# whose sdist needs maturin — homebrew's `--no-binary :all:` sandbox
+# can't bootstrap maturin). Users who want the API backend can
+# `pip install anthropic` themselves after `brew install attackmap`, or
+# use `--llm --llm-backend cli` which speaks to the `claude` CLI.
+pip install homebrew-pypi-poet "attackmap==${VERSION}"
+for pkg in "${ANALYZERS[@]}"; do
+  pip install "${pkg}"
+done
 
 # Top-level sdist url + sha256.
 pip download --no-deps --no-binary :all: "attackmap==${VERSION}" -d . >/dev/null
@@ -87,9 +96,15 @@ for u in data['urls']:
         print(u['url']); break
 ")"
 
-# poet -f attackmap walks attackmap's REQUIRED deps. Analyzers + anthropic
-# live in extras, so add each one with -a.
-ALSO_FLAGS=(-a anthropic)
+# poet -f attackmap walks attackmap's REQUIRED deps. Analyzer plugins
+# live in an extra, so add each one with -a.
+#
+# We intentionally do NOT vendor `anthropic` here. It pulls a Rust
+# extension (`jiter`) whose sdist requires maturin, which homebrew's
+# `--no-binary :all:` sandbox cannot bootstrap. Users who want the API
+# backend can `pip install anthropic` into the attackmap venv, or use
+# `--llm --llm-backend cli` which speaks to the `claude` CLI on PATH.
+ALSO_FLAGS=()
 for pkg in "${ANALYZERS[@]}"; do
   ALSO_FLAGS+=(-a "${pkg}")
 done
@@ -98,7 +113,7 @@ POET_OUT="${WORKDIR}/poet.rb"
 poet -f attackmap "${ALSO_FLAGS[@]}" > "${POET_OUT}"
 
 RESOURCE_COUNT=$(grep -c '^  resource' "${POET_OUT}" || true)
-EXPECTED=$((${#ANALYZERS[@]} + 24))  # 14 analyzers + ~24 transitive deps
+EXPECTED=$((${#ANALYZERS[@]} + 3))  # 14 analyzers + typer/click/pydantic/... core deps
 if [ "${RESOURCE_COUNT}" -lt "${EXPECTED}" ]; then
   echo "ERROR: poet emitted ${RESOURCE_COUNT} resources, expected ≥ ${EXPECTED}" >&2
   echo "Probable cause: poet pkg_resources introspection regression." >&2
