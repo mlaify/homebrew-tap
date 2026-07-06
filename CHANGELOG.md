@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-07-06
+
+### Changed
+
+- `Formula/attackmap.rb` — bump AttackMap core to **0.4.0** (precision +
+  multi-language reach: Go/PHP taint, CVE→exploitability fusion, PR bot, LLM
+  remediation, `--hunt --verify`). sdist URL + sha256 updated; resource blocks
+  unchanged (no dependency changes over 0.3.x).
+
 ## [0.3.2] — 2026-07-05
 
 ### Changed
