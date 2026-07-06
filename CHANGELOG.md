@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-07-05
+
+### Changed
+
+- `Formula/attackmap.rb` — bump AttackMap core to **0.3.1** (taint precision
+  patch: deserialization/eval/exec sinks no longer over-fire on static/local
+  args). sdist URL + sha256 updated; resource blocks unchanged (no dependency
+  changes over 0.3.0).
+
 ## [0.3.0] — 2026-07-05
 
 ### Changed
