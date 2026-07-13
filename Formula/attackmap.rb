@@ -13,8 +13,8 @@ class Attackmap < Formula
   desc "AI-assisted defensive security analyzer for codebases"
   homepage "https://github.com/mlaify/AttackMap"
   # BEGIN sdist: managed by scripts/regenerate.sh — do not edit by hand
-  url "https://files.pythonhosted.org/packages/3c/93/79e186850da0e1a509e225f3548fcb6c8a8f8f75f9eafebb6ecd28c132c6/attackmap-0.4.6.tar.gz"
-  sha256 "be6616321c3ff533774255c2b50d3cff83b1d687116096b97624795b909f66c2"
+  url "https://files.pythonhosted.org/packages/6e/c7/278ec52a53766afd3fe05e0e81dd34dab9d7ee138a396005618b7c53beab/attackmap-0.4.10.tar.gz"
+  sha256 "62c6c4c91c09422b76142a18dffd11ee8abc2ab8c8194aaf0133a95d9cc12966"
   # END sdist
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
@@ -113,6 +113,10 @@ class Attackmap < Formula
   resource "Pygments" do
     url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
     sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
+  end
+  resource "PyYAML" do
+    url "https://files.pythonhosted.org/packages/05/8e/961c0007c59b8dd7729d542c61a4d537767a59645b82a0b521206e1e25c2/pyyaml-6.0.3.tar.gz"
+    sha256 "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
   end
   resource "rich" do
     url "https://files.pythonhosted.org/packages/c0/8f/0722ca900cc807c13a6a0c696dacf35430f72e0ec571c4275d2371fca3e9/rich-15.0.0.tar.gz"
