@@ -13,8 +13,8 @@ class Attackmap < Formula
   desc "AI-assisted defensive security analyzer for codebases"
   homepage "https://github.com/mlaify/AttackMap"
   # BEGIN sdist: managed by scripts/regenerate.sh — do not edit by hand
-  url "https://files.pythonhosted.org/packages/6e/c7/278ec52a53766afd3fe05e0e81dd34dab9d7ee138a396005618b7c53beab/attackmap-0.4.10.tar.gz"
-  sha256 "62c6c4c91c09422b76142a18dffd11ee8abc2ab8c8194aaf0133a95d9cc12966"
+  url "https://files.pythonhosted.org/packages/f3/89/0e8bfbddebc3fa8dccbcc1df0e45e236d930e2b1f28ead5b2698bdbd8d26/attackmap-0.4.15.tar.gz"
+  sha256 "9620c50131c8d4edf74ca6f03e47be909d87cebcd2670947f39847c9b916d5ab"
   # END sdist
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
@@ -127,8 +127,8 @@ class Attackmap < Formula
     sha256 "8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de"
   end
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/7c/f7/68adc395201b20b872d68e975386832e8005ffeacedd43a1d837a32815be/typer-0.26.8.tar.gz"
-    sha256 "c244a6bd558886fe3f8780efb6bdd28bb9aff005a94eedebaa5cb32926fe2f7e"
+    url "https://files.pythonhosted.org/packages/37/78/fda3361b56efc27944f24225f6ecd13d96d6fcfe37bd0eb34e2f4c63f9fc/typer-0.27.0.tar.gz"
+    sha256 "629bd12ea5d13a17148125d9a264f949eb171fb3f120f9b04d85873cab054fa5"
   end
   resource "typing-extensions" do
     url "https://files.pythonhosted.org/packages/f6/cc/6253133b5bb138fc3306cebfbda2c520f545d36b5be2c7255cc528bb45d6/typing_extensions-4.16.0.tar.gz"
