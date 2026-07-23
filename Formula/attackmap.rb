@@ -13,8 +13,8 @@ class Attackmap < Formula
   desc "AI-assisted defensive security analyzer for codebases"
   homepage "https://github.com/mlaify/AttackMap"
   # BEGIN sdist: managed by scripts/regenerate.sh — do not edit by hand
-  url "https://files.pythonhosted.org/packages/4c/86/a1f6d161b026ff65d72fbce81bfd5239357575b8a296d27be3b3b425497a/attackmap-0.4.25.tar.gz"
-  sha256 "62438960473fe89ab87bd7a1b9585680906872278ff5b4e41edd61659b715d6b"
+  url "https://files.pythonhosted.org/packages/e2/ac/b6646a21edd35a27f7528afc5e6be5f6a55ddf23a7da2c7c4421fa214ea1/attackmap-0.4.26.tar.gz"
+  sha256 "16d39eb1f78a9fe96e1cad06b44cf6d4c54c121e5f0ca82b0ec908c76d3d6826"
   # END sdist
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
