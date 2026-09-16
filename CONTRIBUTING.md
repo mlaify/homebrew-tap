@@ -23,12 +23,12 @@ so every transitive dependency is pinned with a `sha256`. See
 ## Code of Conduct
 
 This project adheres to the same standards as the AttackMap project. Report
-unacceptable behavior to [matthewd@matthewd.xyz](mailto:matthewd@matthewd.xyz).
+unacceptable behavior to [security@mlaify.io](mailto:security@mlaify.io).
 
 ## Reporting security issues
 
 Please do **not** open public issues for security vulnerabilities in our
-formulae. Email [matthewd@matthewd.xyz](mailto:matthewd@matthewd.xyz) — see
+formulae. Email [security@mlaify.io](mailto:security@mlaify.io) — see
 [SECURITY.md](SECURITY.md) for the full disclosure policy.
 
 ## License
