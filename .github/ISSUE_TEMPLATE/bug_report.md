@@ -7,12 +7,12 @@ assignees: ''
 
 ---
 
-**Which formula**
-e.g. `attackmap`
+**Which cask**
+e.g. `grrclone`
 
 **What you ran**
 ```
-brew install mlaify/tap/attackmap
+brew install --cask mlaify/tap/grrclone
 ```
 
 **What went wrong**

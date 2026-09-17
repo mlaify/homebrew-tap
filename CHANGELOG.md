@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `grrclone` cask — `brew install --cask mlaify/tap/grrclone`.
+
+### Removed
+
+- The last of the AttackMap scaffolding: `scripts/regenerate.sh` and
+  `scripts/_rewrite_formula.py`, which pinned Python resources for a formula this
+  tap no longer carries, and the references to AttackMap in the README, the
+  contributing guide, the issue template and the licence attribution.
+
+  Earlier entries in this file still mention AttackMap. That is deliberate: they
+  record what the tap did at the time, and rewriting them would make this file a
+  worse record than it is.
+
 ## [0.4.2] — 2026-07-10
 
 ### Changed
