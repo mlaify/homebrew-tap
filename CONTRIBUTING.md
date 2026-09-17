@@ -22,8 +22,8 @@ so every transitive dependency is pinned with a `sha256`. See
 
 ## Code of Conduct
 
-This project adheres to the same standards as the AttackMap project. Report
-unacceptable behavior to [security@mlaify.io](mailto:security@mlaify.io).
+Be decent to each other. Report unacceptable behaviour to
+[security@mlaify.io](mailto:security@mlaify.io).
 
 ## Reporting security issues
 

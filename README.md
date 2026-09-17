@@ -37,12 +37,6 @@ candidate has to be downloaded from the
 [releases page](https://github.com/mlaify/grrclone/releases), and doing that replaces
 the copy Homebrew is tracking.
 
-## AttackMap
-
-No longer distributed through Homebrew. Install from source —
-[AttackMap](https://github.com/mlaify/AttackMap) (CLI) and
-[AttackMap-mac](https://github.com/mlaify/AttackMap-mac) (macOS app).
-
 ## License
 
 [MIT](LICENSE). Copyright (c) 2026 Matthew Davis and contributors.
