@@ -1,10 +1,6 @@
 cask "attackmap-app" do
-  # Bump to the release that requests `--format all` (AttackMap-mac 42bc8e2,
-  # first shipped in v0.2.2) before announcing this cask. v0.2.1 still runs
-  # against attackmap >= 0.4.30, but its Diagrams view comes up empty because
-  # it asks for `--format json` only.
-  version "0.2.1"
-  sha256 "dbb36ec99d99880fea2f2105e3eba40fc6be70bf2be838bf593b804e8c05dc2f"
+  version "0.2.2"
+  sha256 "87c9a84531be2ca6c91822080136720cd5158b1d77e06b7d959200cda999f306"
 
   url "https://github.com/mlaify/AttackMap-mac/releases/download/v#{version}/AttackMap-#{version}.dmg"
   name "AttackMap"
