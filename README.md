@@ -2,7 +2,31 @@
 
 ```bash
 brew install --cask mlaify/tap/grrclone
+brew install mlaify/tap/attackmap            # AttackMap CLI, all 15 analyzer plugins
+brew install --cask mlaify/tap/attackmap-app # AttackMap macOS app (installs the CLI too)
 ```
+
+## attackmap
+
+[AttackMap](https://github.com/mlaify/AttackMap) maps a codebase's attack surface
+and writes an evidence-grounded defensive review. The formula installs from the
+GitHub release tag into a Homebrew-managed virtualenv. AttackMap is not published
+to PyPI. Its third-party dependencies are PyPI sdists pinned by sha256, `pydantic`
+comes from homebrew-core's bottle (no Rust build), and the 15 official analyzer
+plugins are pinned to the exact commits in AttackMap's `plugins_lock.py` for that
+tag.
+
+`.github/workflows/bump-attackmap.yml` opens a PR when AttackMap tags a new
+release (daily check, manual dispatch, or a `repository_dispatch` of type
+`attackmap-release`). It is driven by `scripts/bump_attackmap.sh` and
+`scripts/plugin_resources.py`.
+
+## attackmap-app
+
+The native macOS front-end for AttackMap
+([mlaify/AttackMap-mac](https://github.com/mlaify/AttackMap-mac)): the signed,
+notarised DMG from its GitHub releases, SHA-256 pinned. It depends on the
+`attackmap` formula, because the app drives the CLI rather than bundling it.
 
 ## grrclone
 
