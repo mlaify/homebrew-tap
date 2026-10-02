@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `attackmap` formula, back without PyPI: it installs v0.4.31 from the GitHub
+  tag, with the 15 official plugins pinned to AttackMap's plugin lock and
+  `pydantic` from homebrew-core's bottle. `brew install mlaify/tap/attackmap`.
+- `attackmap-app` cask, the AttackMap macOS app 0.2.2. `brew install --cask mlaify/tap/attackmap-app`.
+- `bump-attackmap` workflow plus `scripts/bump_attackmap.sh` and
+  `scripts/plugin_resources.py`, which keep the formula on the latest AttackMap tag.
 - `grrclone` cask — `brew install --cask mlaify/tap/grrclone`.
 
 ### Removed
