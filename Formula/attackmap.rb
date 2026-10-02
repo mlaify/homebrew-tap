@@ -10,8 +10,8 @@ class Attackmap < Formula
 
   desc "Defensive security analyzer that maps a codebase's attack surface"
   homepage "https://github.com/mlaify/AttackMap"
-  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "df911b49f9639a3e051de2cc9e4ea5aa26f51cfbc893f5f3e7c6212b72976cb3"
+  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.5.1.tar.gz"
+  sha256 "f698317534bd9e491cdb7b75adc344deb865e21e28cfd6fca18f86ce01736faa"
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
 
