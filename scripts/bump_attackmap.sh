@@ -33,7 +33,8 @@ brew update-python-resources --print-only --package-name attackmap \
   --ignore-non-pypi-packages \
   --exclude-packages pydantic,pydantic-core,annotated-types,typing-extensions,typing-inspection \
   mlaify/tap/attackmap >"${WORK}/pypi.rb"
-if ! grep -q 'resource "typer"' "${WORK}/pypi.rb"; then
+if ! grep -q 'resource "typer"' "${WORK}/pypi.rb"
+then
   cat "${WORK}/pypi.rb"
   echo "unexpected resource output" >&2
   exit 1
