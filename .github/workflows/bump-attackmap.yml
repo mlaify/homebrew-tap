@@ -83,6 +83,9 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # setup-homebrew re-taps this checkout, which drops the credentials
+          # actions/checkout configured; let gh supply GH_TOKEN for the push.
+          gh auth setup-git
           git checkout -b "$branch"
           git add Formula/attackmap.rb
           git commit -m "attackmap ${VERSION}"
