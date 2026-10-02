@@ -18,38 +18,13 @@ trap 'rm -rf "${WORK}"' EXIT
 SHA="$(curl -fsSL "${URL}" | shasum -a 256 | awk '{print $1}')"
 echo "attackmap ${VERSION}: ${SHA}"
 
-splice() {  # splice <marker> <file-with-blocks>
-  python3 - "${FORMULA}" "$1" "$2" <<'PY'
-import re
-import sys
-
-formula, marker, body_file = sys.argv[1:]
-text = open(formula).read()
-body = open(body_file).read().strip("\n")
-pattern = re.compile(rf"(  # BEGIN {marker}[^\n]*\n(?:  #[^\n]*\n)*)(.*?)(  # END {marker}\n)", re.S)
-if not pattern.search(text):
-    sys.exit(f"markers for {marker!r} not found in {formula}")
-text = pattern.sub(lambda m: m.group(1) + body + "\n" + m.group(3), text, count=1)
-open(formula, "w").write(text)
-PY
-}
-
 # 1. The main package's url/sha256 (the first ones in the file). Done first so
 #    update-python-resources resolves dependencies of the new version.
-python3 - "${FORMULA}" "${URL}" "${SHA}" <<'PY'
-import re
-import sys
-
-formula, url, sha = sys.argv[1:]
-text = open(formula).read()
-text = re.sub(r'^  url ".*"$', f'  url "{url}"', text, count=1, flags=re.M)
-text = re.sub(r'^  sha256 ".*"$', f'  sha256 "{sha}"', text, count=1, flags=re.M)
-open(formula, "w").write(text)
-PY
+python3 scripts/edit_formula.py url "${FORMULA}" "${URL}" "${SHA}"
 
 # 2. Analyzer plugins, pinned exactly like the [all] extra / plugins_lock.py.
-python3 scripts/plugin_resources.py "${TAG}" > "${WORK}/plugins.rb"
-splice "analyzer plugins" "${WORK}/plugins.rb"
+python3 scripts/plugin_resources.py "${TAG}" >"${WORK}/plugins.rb"
+python3 scripts/edit_formula.py splice "${FORMULA}" "analyzer plugins" "${WORK}/plugins.rb"
 
 [[ "${SKIP_BREW:-}" == 1 ]] && exit 0
 
@@ -57,9 +32,13 @@ splice "analyzer plugins" "${WORK}/plugins.rb"
 brew update-python-resources --print-only --package-name attackmap \
   --ignore-non-pypi-packages \
   --exclude-packages pydantic,pydantic-core,annotated-types,typing-extensions,typing-inspection \
-  mlaify/tap/attackmap > "${WORK}/pypi.rb"
-grep -q 'resource "typer"' "${WORK}/pypi.rb" || { cat "${WORK}/pypi.rb"; echo "unexpected resource output" >&2; exit 1; }
-splice "pypi resources" "${WORK}/pypi.rb"
+  mlaify/tap/attackmap >"${WORK}/pypi.rb"
+if ! grep -q 'resource "typer"' "${WORK}/pypi.rb"; then
+  cat "${WORK}/pypi.rb"
+  echo "unexpected resource output" >&2
+  exit 1
+fi
+python3 scripts/edit_formula.py splice "${FORMULA}" "pypi resources" "${WORK}/pypi.rb"
 
 brew style --fix mlaify/tap/attackmap
 brew audit --strict --online mlaify/tap/attackmap
