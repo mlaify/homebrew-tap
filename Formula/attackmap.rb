@@ -10,8 +10,8 @@ class Attackmap < Formula
 
   desc "Defensive security analyzer that maps a codebase's attack surface"
   homepage "https://github.com/mlaify/AttackMap"
-  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.5.1.tar.gz"
-  sha256 "f698317534bd9e491cdb7b75adc344deb865e21e28cfd6fca18f86ce01736faa"
+  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "ff5b5477bcd9ebd55ccb168eec4019d6e231332bf4bfd85574596efdbe1329ce"
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
 
@@ -76,8 +76,8 @@ class Attackmap < Formula
   end
 
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/16/f7/57713ba479fd405eb76de31404b2c744c289e336b2d999511ebf51e496f7/typer-0.27.2.tar.gz"
-    sha256 "269b7eb9d3c202ca84b4bc9618cb04ebb43d3d4d1e567e4c768607232c05f945"
+    url "https://files.pythonhosted.org/packages/03/51/d33db42cc72ffd8c30777547b42d01f0cbf9d95a770457698d0174b3ed71/typer-0.27.3.tar.gz"
+    sha256 "d0396f770a560ab1b0a8504e13b5f254b728cedb05c61cf0359e944e50ce8901"
   end
   # END pypi resources
 
@@ -131,9 +131,9 @@ class Attackmap < Formula
   end
 
   resource "attackmap-analyzer-omeka-s" do
-    url "https://github.com/mlaify/attack-map-analyzer-omeka-s/archive/6b9e478689a825dbcba655de4ff0bf63a3a3c544.tar.gz"
+    url "https://github.com/mlaify/attackmap-analyzer-omeka-s/archive/6b9e478689a825dbcba655de4ff0bf63a3a3c544.tar.gz"
     version "0.1.0"
-    sha256 "dd13bdfcee10d1e502a77cac632463a1346275d9bb45d1dc46aa88b85a3f7186"
+    sha256 "1ac61e7819a0e43ff8fd2f7ee4e399e32300185474ff7f3bd24dc7e2a4940630"
   end
 
   resource "attackmap-analyzer-php-laminas" do
