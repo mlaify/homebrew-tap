@@ -81,14 +81,22 @@ jobs:
           if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
             echo "branch $branch already exists; nothing to do"; exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # setup-homebrew re-taps this checkout, which drops the credentials
-          # actions/checkout configured; let gh supply GH_TOKEN for the push.
-          gh auth setup-git
-          git checkout -b "$branch"
-          git add Formula/attackmap.rb
-          git commit -m "attackmap ${VERSION}"
-          git push -u origin "$branch"
+          # main requires signed commits. A `git push` from here is unsigned, so
+          # the commit is made through GraphQL createCommitOnBranch, which GitHub
+          # signs. The API takes file contents base64-encoded; jq encodes the
+          # formula read from disk (its wire format, not a blob in this file).
+          base="$(git rev-parse HEAD)"
+          gh api "repos/${GITHUB_REPOSITORY}/git/refs" \
+            -f ref="refs/heads/${branch}" -f sha="$base" >/dev/null
+          jq -n \
+            --arg repo "$GITHUB_REPOSITORY" --arg branch "$branch" --arg base "$base" \
+            --arg headline "attackmap ${VERSION}" --rawfile formula Formula/attackmap.rb \
+            '{query: "mutation($input: CreateCommitOnBranchInput!) { createCommitOnBranch(input: $input) { commit { oid url } } }",
+              variables: {input: {
+                branch: {repositoryNameWithOwner: $repo, branchName: $branch},
+                expectedHeadOid: $base,
+                message: {headline: $headline},
+                fileChanges: {additions: [{path: "Formula/attackmap.rb", contents: ($formula | @base64)}]}}}}' \
+            | gh api graphql --input -
           gh pr create --head "$branch" --title "attackmap ${VERSION}" \
             --body "Automated bump of \`Formula/attackmap.rb\` to AttackMap v${VERSION}: tag tarball sha256, PyPI resources (\`brew update-python-resources\`), and analyzer plugins pinned from \`plugins_lock.py\` at the tag."
