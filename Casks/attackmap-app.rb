@@ -1,6 +1,6 @@
 cask "attackmap-app" do
-  version "0.2.3"
-  sha256 "4c1d95ea2310429dce695a10db3199914c7324d362513c879634980537faffd8"
+  version "0.3.0"
+  sha256 "b069314e24eee081de6fe2a6d86e6c50017c4814622f3aba0f138149d5377a2d"
 
   url "https://github.com/mlaify/AttackMap-mac/releases/download/v#{version}/AttackMap-#{version}.dmg"
   name "AttackMap"
