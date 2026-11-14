@@ -1,66 +1,62 @@
-name: Bug or incorrect result
-description: Report a reproducible bug, crash, compatibility problem, false positive, false negative, or other incorrect result.
+name: Bug report
+description: A formula or cask in this tap fails to install, upgrade, uninstall, or launch.
 title: "[Bug]: "
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        This form is public. Do not include secrets, credentials, personal data, proprietary source code, or confidential vulnerability details.
+        This form is public. Do not include secrets, credentials, or personal data.
 
-        A vulnerability in this project must be reported privately from the repository's Security tab. A finding in software analyzed or displayed by this project is normally a bug report here, not a vulnerability in this project.
+        A bug in the packaged software itself belongs in that project's repository ([AttackMap](https://github.com/mlaify/AttackMap/issues), [grrclone](https://github.com/mlaify/grrclone/issues)). A vulnerability in this tap must be reported privately from the repository's **Security** tab.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Formula or cask
+      options:
+        - attackmap (formula)
+        - attackmap-app (cask)
+        - grrclone (cask)
+        - Other
+    validations:
+      required: true
   - type: dropdown
     id: kind
     attributes:
-      label: Report type
+      label: Problem
       options:
-        - Bug or crash
-        - Installation or compatibility problem
-        - Incorrect result or false positive
-        - Missed result or false negative
-        - Performance or reliability problem
-        - Other unexpected behavior
-    validations:
-      required: true
-  - type: input
-    id: version
-    attributes:
-      label: Version or commit
-      description: Provide the release version, build number, or commit SHA.
-    validations:
-      required: true
-  - type: input
-    id: environment
-    attributes:
-      label: Environment
-      description: Include the operating system, architecture, runtime, relevant dependencies, device, or client versions.
+        - Install fails
+        - Upgrade fails
+        - Uninstall or cleanup problem
+        - Installs but does not launch or run
+        - Checksum mismatch or wrong version
+        - Other
     validations:
       required: true
   - type: textarea
-    id: summary
+    id: command
     attributes:
-      label: What happened?
-      description: Describe the actual behavior and why it is incorrect.
-    validations:
-      required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: What did you expect?
-    validations:
-      required: true
-  - type: textarea
-    id: reproduce
-    attributes:
-      label: Minimal reproduction
-      description: Give complete steps and the smallest safe example that reproduces the problem.
-    validations:
-      required: true
-  - type: textarea
-    id: evidence
-    attributes:
-      label: Sanitized logs or evidence
-      description: Remove secrets, credentials, personal data, proprietary source, and third-party data before posting.
+      label: What you ran
+      placeholder: brew install --cask mlaify/tap/grrclone
       render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: What went wrong
+      description: Paste the failing command output.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: brew-config
+    attributes:
+      label: brew config
+      description: Paste the output of `brew config`. It includes the Homebrew, macOS, and CPU details.
+      render: shell
+    validations:
+      required: true
   - type: checkboxes
     id: confirmations
     attributes:
@@ -68,7 +64,7 @@ body:
       options:
         - label: I searched existing open and closed issues for this problem.
           required: true
-        - label: This report does not contain confidential vulnerability details, secrets, credentials, personal data, or proprietary source code.
+        - label: I ran `brew update` and the problem still happens.
           required: true
-        - label: I understand that an incorrect or disputed security result is normally a public bug report, not a vulnerability in this project.
+        - label: This report does not contain secrets, credentials, or personal data.
           required: true
