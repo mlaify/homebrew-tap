@@ -22,13 +22,13 @@ so every transitive dependency is pinned with a `sha256`. See
 
 ## Code of Conduct
 
-Be decent to each other. Report unacceptable behaviour to
-[security@mlaify.io](mailto:security@mlaify.io).
+Be decent to each other. Report unacceptable behaviour privately through
+this repository's **Security** tab.
 
 ## Reporting security issues
 
 Please do **not** open public issues for security vulnerabilities in our
-formulae. Email [security@mlaify.io](mailto:security@mlaify.io) — see
+formulae. Use this repository's **Security** tab and select **Report a vulnerability** — see
 [SECURITY.md](SECURITY.md) for the full disclosure policy.
 
 ## License
