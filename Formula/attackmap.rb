@@ -10,8 +10,8 @@ class Attackmap < Formula
 
   desc "Defensive security analyzer that maps a codebase's attack surface"
   homepage "https://github.com/mlaify/AttackMap"
-  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.6.4.tar.gz"
-  sha256 "e550adfc45656d15df80e4c8c6abd116313526f81faab2fd79a492747d92e575"
+  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.6.5.tar.gz"
+  sha256 "6b78ae4c854ff02198e75e4929c1b74b0e50b6998d04ad181649847e5b3155e2"
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
 
@@ -83,93 +83,93 @@ class Attackmap < Formula
 
   # BEGIN analyzer plugins: scripts/plugin_resources.py v<version>
   resource "attackmap-analyzer-atproto" do
-    url "https://github.com/mlaify/attackmap-analyzer-atproto/archive/34b7616d5428549d39848dc4db1af7a71d6e0b56.tar.gz"
-    version "0.2.0"
-    sha256 "b51cb7eb5b6b93929d6905ec5d0004e1679bc9b62c4b5c231ad187a222b2a881"
+    url "https://github.com/mlaify/attackmap-analyzer-atproto/archive/d94f7ab3673cb062f1f2d6d731abb03cea8a2034.tar.gz"
+    version "0.2.1"
+    sha256 "ba86abe556bc7c37ad0cfebc9f8ee69bb44eb76a97c0be4fcd191b78e5f92681"
   end
 
   resource "attackmap-analyzer-c" do
-    url "https://github.com/mlaify/attackmap-analyzer-c/archive/00f7615a75df47e4ea1a084af562b4cf2e037ef1.tar.gz"
-    version "0.2.0"
-    sha256 "29b1cd7b69b37c3c551fb62763950c2a0fb12fbd7066c0d03d2bb8e12f893715"
+    url "https://github.com/mlaify/attackmap-analyzer-c/archive/e6abfcb8634826347243ecb477f7c63b2cbdb337.tar.gz"
+    version "0.2.1"
+    sha256 "c314b59f2ed13a7e6093d85ee762b1ab980d5ed577c0a8c7f028f78925332a1b"
   end
 
   resource "attackmap-analyzer-cpp" do
-    url "https://github.com/mlaify/attackmap-analyzer-cpp/archive/cae9511e8db3ae192af9189a5d15d889e7fd18a8.tar.gz"
-    version "0.2.0"
-    sha256 "1efab6c91cffd620616daa2dfbe651b1eceb78b376d96a81eb4e7927fa264957"
+    url "https://github.com/mlaify/attackmap-analyzer-cpp/archive/4d9d98edbb3ef03f7d9fa27fd4437b2c4002d7af.tar.gz"
+    version "0.2.1"
+    sha256 "a046f82ac80c89f579b0b40992a17c65257e849cedf1c46081fe571f2816dc84"
   end
 
   resource "attackmap-analyzer-dotnet" do
-    url "https://github.com/mlaify/attackmap-analyzer-dotnet/archive/fd08a2899f81c7173e257e892fb3914704244f3d.tar.gz"
-    version "0.2.0"
-    sha256 "af2a3a1baaeb034c739eee9ea112bb24ededb56d56655e191717ededf3e30e98"
+    url "https://github.com/mlaify/attackmap-analyzer-dotnet/archive/d940638fafde355ff4a0c22439389baefc3003c8.tar.gz"
+    version "0.2.1"
+    sha256 "d09d35896d2156cc74561918c5fe80b227e95600b54957b3f9d9e52f51904332"
   end
 
   resource "attackmap-analyzer-go" do
-    url "https://github.com/mlaify/attackmap-analyzer-go/archive/8570338fc67198770b3185633bb0fc35d7db5deb.tar.gz"
-    version "0.2.0"
-    sha256 "cde64307a29a05ad08fedf17fa033e9c81b1fcc40a2cc7e0d2837b604f2d6f8c"
+    url "https://github.com/mlaify/attackmap-analyzer-go/archive/64b425f9b14c97705173b9543ea21d4f612e98a3.tar.gz"
+    version "0.2.1"
+    sha256 "30729422fe06efca2dbf78d123277514e1a74a7c9a1df60ce07c0a1e1c394d37"
   end
 
   resource "attackmap-analyzer-iac" do
-    url "https://github.com/mlaify/attackmap-analyzer-iac/archive/ef7811cb500b40535740fc104a3d2b29ef627141.tar.gz"
-    version "0.2.0"
-    sha256 "15d154751cbec39c028aef9a2f557ff2c91919fffdc646d2f564abec27b42267"
+    url "https://github.com/mlaify/attackmap-analyzer-iac/archive/6e598f7a783aab4cdc0defa6ec2f9016fc6b0643.tar.gz"
+    version "0.2.1"
+    sha256 "df604a209971227646e7c193bde2b7d71487c6c960eb7274289c18942e252c0d"
   end
 
   resource "attackmap-analyzer-java-spring" do
-    url "https://github.com/mlaify/attackmap-analyzer-java-spring/archive/82e23461f6c075d17a709c29c9349a1076d1bafa.tar.gz"
-    version "0.2.0"
-    sha256 "76cdf359d39263c798109e63f31b5d994d13dcfa56c279b0e2cb3979bc5bba6d"
+    url "https://github.com/mlaify/attackmap-analyzer-java-spring/archive/3aa4290f109f6de86049d81d8637040abdb3a789.tar.gz"
+    version "0.2.1"
+    sha256 "2abd3e02c6beaec7d6b578d4f211fbd70cf98318b5c708882d89aedb97a8af37"
   end
 
   resource "attackmap-analyzer-node-service" do
-    url "https://github.com/mlaify/attackmap-analyzer-node-service/archive/949269777c020e7a6265fb1436cf1be2fe5004be.tar.gz"
-    version "0.3.0"
-    sha256 "ffd16b8c4162dbefd5e4696895842ff4c4eb5a0386570c98e1f60afa8769eec1"
+    url "https://github.com/mlaify/attackmap-analyzer-node-service/archive/744101eeb9d1b4eae0c8e718e5af531ea33872af.tar.gz"
+    version "0.3.1"
+    sha256 "effe000ad592dd0bdb4db29646d7b72bd1329bad30a753a1095db5911b7b5653"
   end
 
   resource "attackmap-analyzer-omeka-s" do
-    url "https://github.com/mlaify/attackmap-analyzer-omeka-s/archive/9759c163e30c35256558188cff30dc1cf1331cd5.tar.gz"
-    version "0.2.0"
-    sha256 "74c98a6a88f3d9d2da3a3ec8fb540695f91bfd4836d60da87f46202c1f97f6ba"
+    url "https://github.com/mlaify/attackmap-analyzer-omeka-s/archive/becc3f86a516d43036e3e42d72bcde4bbac85176.tar.gz"
+    version "0.2.1"
+    sha256 "7a0d884f0254ed1a350be048bbe18dbfc9eb395ca99f781a38b000627ff1697e"
   end
 
   resource "attackmap-analyzer-php-laminas" do
-    url "https://github.com/mlaify/attackmap-analyzer-php-laminas/archive/9046ff6256338850574ee781b69bd2e3f09d2ab2.tar.gz"
-    version "0.2.0"
-    sha256 "a24d8731b9258c7bc258ddc84d6f2484817749697fbc2721c29195da5b2fdc7f"
+    url "https://github.com/mlaify/attackmap-analyzer-php-laminas/archive/7a0b3945470eece08ce36f2821ff25765a113b4f.tar.gz"
+    version "0.2.1"
+    sha256 "c48ea8591d46f0febf18c2465b3da262c890bc5c6245617ebc0252aa2034234f"
   end
 
   resource "attackmap-analyzer-php-web" do
-    url "https://github.com/mlaify/attackmap-analyzer-php-web/archive/65a5f098c40ae64d3ec3b5d20777eac640fb743b.tar.gz"
-    version "0.2.0"
-    sha256 "2422799399187782c8d3c91e649853677c1f831bbc007c394fc93f9b2d00aedc"
+    url "https://github.com/mlaify/attackmap-analyzer-php-web/archive/bcae04c48f3f4bb359b3cb68d93521f277b939ab.tar.gz"
+    version "0.2.1"
+    sha256 "22adcee1e9f0b0edf0b32d50aaa649233bb5556f3c632a3d175b126d7ce73ad6"
   end
 
   resource "attackmap-analyzer-python" do
-    url "https://github.com/mlaify/attackmap-analyzer-python/archive/9888be5c8f8e9127686e0ed98af9425a34bc7b8c.tar.gz"
-    version "0.2.0"
-    sha256 "515613471220fdf55ae70d976d3a058a965926a8fdf6f464e42054b0f89a0c37"
+    url "https://github.com/mlaify/attackmap-analyzer-python/archive/280cb9ca851d467de4d28a1f0d89a92388b956f8.tar.gz"
+    version "0.2.1"
+    sha256 "7d5fcd749e2ddaab16f7078a6be6aacf6d1c186d1b972cd954a3d610c1920276"
   end
 
   resource "attackmap-analyzer-rust" do
-    url "https://github.com/mlaify/attackmap-analyzer-rust/archive/ba6cce7ec1b8055b27c3aa2ddd8884ae410b8ba0.tar.gz"
-    version "0.2.0"
-    sha256 "2ff6b4c778affd121a419ff3b3c898f8bfedca99e71ec3108b9efd10017a3e71"
+    url "https://github.com/mlaify/attackmap-analyzer-rust/archive/6da4016f8826c6634fdc025145308ce0b06390b2.tar.gz"
+    version "0.2.1"
+    sha256 "e6efda3bab3845710caf0124682ad10f656176b5d5d8c781351f601f4ce9c92a"
   end
 
   resource "attackmap-analyzer-swift" do
-    url "https://github.com/mlaify/attackmap-analyzer-swift/archive/eb56ca09c642e580c5cd73391d602f555d429a4b.tar.gz"
-    version "0.2.0"
-    sha256 "1903a07e0f2411f6768e43712cc984bf676f3cd34df2a0dd1813b02b783235f6"
+    url "https://github.com/mlaify/attackmap-analyzer-swift/archive/7e7808d3575f50fdc2106a793011825672e5326f.tar.gz"
+    version "0.2.1"
+    sha256 "f1db2a8ada3c3a41c84d7708dd3adc2da46c7d520a6513478c025228a96bd407"
   end
 
   resource "attackmap-analyzer-terraform" do
-    url "https://github.com/mlaify/attackmap-analyzer-terraform/archive/1dfbce9a32c9a2fd6fc1b80f976ea86f69d82cd1.tar.gz"
-    version "0.2.1"
-    sha256 "e2b14d653eb568ea875c8166fae98831fa5a77284ae4514362f0cc730efd1a95"
+    url "https://github.com/mlaify/attackmap-analyzer-terraform/archive/8856e56969e8e4ace98a0a395417fa5899a71151.tar.gz"
+    version "0.2.2"
+    sha256 "063b378a36ad68e51cba0bf30b09bfcc84edeb12b266ca3b9d2999c12fc4f8fe"
   end
   # END analyzer plugins
 
