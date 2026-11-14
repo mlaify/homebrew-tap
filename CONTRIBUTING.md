@@ -22,8 +22,8 @@ so every transitive dependency is pinned with a `sha256`. See
 
 ## Code of Conduct
 
-Be decent to each other. Report unacceptable behaviour privately through
-this repository's **Security** tab.
+Be decent to each other. Report unacceptable behaviour privately with GitHub's
+**Report content** option (choose **Report to repository admins**).
 
 ## Reporting security issues
 
