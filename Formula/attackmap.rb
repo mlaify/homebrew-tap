@@ -10,8 +10,8 @@ class Attackmap < Formula
 
   desc "Defensive security analyzer that maps a codebase's attack surface"
   homepage "https://github.com/mlaify/AttackMap"
-  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.6.5.tar.gz"
-  sha256 "6b78ae4c854ff02198e75e4929c1b74b0e50b6998d04ad181649847e5b3155e2"
+  url "https://github.com/mlaify/AttackMap/archive/refs/tags/v0.9.0.tar.gz"
+  sha256 "eb8d4140ff01e88ed16922a83f7d52668cc6470bdf5bff3b8952989bc0748fe2"
   license "MIT"
   head "https://github.com/mlaify/AttackMap.git", branch: "main"
 
@@ -36,13 +36,13 @@ class Attackmap < Formula
   #     --exclude-packages pydantic,pydantic-core,annotated-types,typing-extensions,typing-inspection \
   #     --print-only mlaify/tap/attackmap   (then paste between these markers)
   resource "annotated-doc" do
-    url "https://files.pythonhosted.org/packages/5a/8e/38aa427ed5402449e226975b649c5dc73ccadfefeb95e6aecb8f8ea4b6b6/annotated_doc-0.0.5.tar.gz"
-    sha256 "c7e58ce09192557605d8bbd92836d7e1d520ac9580096042c0bfd197efacf1bb"
+    url "https://files.pythonhosted.org/packages/0b/7d/bdbf3062e5dae31da8b3de1e3269110beb93d268df4a7f6d22b167c6cee0/annotated_doc-0.0.7.tar.gz"
+    sha256 "0a30ef8f5322a4173720ae6712dc9a5e58f5a19868f3f167b4b5778db066c2b5"
   end
 
   resource "markdown-it-py" do
-    url "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz"
-    sha256 "04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49"
+    url "https://files.pythonhosted.org/packages/16/fc/cee2c45553c9a9bf77d8b0c391560c556d7ed756b1f0bb35eb5d48db09ea/markdown_it_py-4.3.0.tar.gz"
+    sha256 "91a58fa5b72c71a40cf7177250fd767480d7a2bb3ac426ccfb76fb90305fdaaa"
   end
 
   resource "mdurl" do
@@ -61,8 +61,8 @@ class Attackmap < Formula
   end
 
   resource "pyyaml" do
-    url "https://files.pythonhosted.org/packages/05/8e/961c0007c59b8dd7729d542c61a4d537767a59645b82a0b521206e1e25c2/pyyaml-6.0.3.tar.gz"
-    sha256 "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
+    url "https://files.pythonhosted.org/packages/76/b8/c0b780928e2fb1c87e9e375818c6f121da2398b071012d1747be300b83f4/pyyaml-6.0.4.tar.gz"
+    sha256 "e24bf71af8a432d7808fabff134d38dfe16d3cbb41f2873bb4b1e42422de0a1a"
   end
 
   resource "rich" do
@@ -76,8 +76,8 @@ class Attackmap < Formula
   end
 
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/03/51/d33db42cc72ffd8c30777547b42d01f0cbf9d95a770457698d0174b3ed71/typer-0.27.3.tar.gz"
-    sha256 "d0396f770a560ab1b0a8504e13b5f254b728cedb05c61cf0359e944e50ce8901"
+    url "https://files.pythonhosted.org/packages/bf/21/37383ece7d0a4995fb8ea97729207c4292b3ff94085002f37b2387063cfb/typer-0.29.2.tar.gz"
+    sha256 "b1998dc5f2c3dedafa1517a9521fa944cc4dc1fadcea085d81a3b10ebcaeb075"
   end
   # END pypi resources
 
@@ -167,9 +167,9 @@ class Attackmap < Formula
   end
 
   resource "attackmap-analyzer-terraform" do
-    url "https://github.com/mlaify/attackmap-analyzer-terraform/archive/8856e56969e8e4ace98a0a395417fa5899a71151.tar.gz"
-    version "0.2.2"
-    sha256 "063b378a36ad68e51cba0bf30b09bfcc84edeb12b266ca3b9d2999c12fc4f8fe"
+    url "https://github.com/mlaify/attackmap-analyzer-terraform/archive/67612b35783a971fc187a8c982f9538009eb9598.tar.gz"
+    version "0.3.0"
+    sha256 "cdfd67030bfd7ca5545eea76b40af92e4bb6bcca58001c78899df6578def82f6"
   end
   # END analyzer plugins
 
